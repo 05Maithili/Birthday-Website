@@ -79,7 +79,7 @@ function Index() {
 
         <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-12 md:grid-cols-[1fr_auto]">
           <div className="animate-fade-up text-center md:text-left">
-            <h1 className="font-display text-5xl font-bold leading-[1.05] tracking-tight md:text-7xl lg:text-8xl">
+            <h1 className="font-display text-4xl sm:text-5xl font-bold leading-[1.05] tracking-tight md:text-7xl lg:text-8xl">
               <span className="block text-foreground">Happy Birthday</span>
               <span className="block text-gold-gradient">{FRIEND_NAME} 🎸</span>
             </h1>
@@ -100,7 +100,7 @@ function Index() {
           <div className="relative flex justify-center md:justify-end animate-fade-up" style={{ animationDelay: "0.3s" }}>
             <div className="absolute inset-0 -z-10 mx-auto h-full w-[300px] rounded-full blur-3xl"
               style={{ background: "radial-gradient(circle, oklch(0.82 0.16 85 / 0.35), transparent 70%)" }} />
-            <ElectricGuitar width={220} />
+            <ElectricGuitar className="w-[140px] md:w-[220px]" />
           </div>
         </div>
       </section>
@@ -117,7 +117,7 @@ function Index() {
             The person who turns ordinary moments into unforgettable memories.
           </p>
 
-          <div className="relative mx-auto mt-16 h-72 w-72 animate-float-slow md:h-96 md:w-96">
+          <div className="relative mx-auto mt-16 h-64 w-64 sm:h-72 sm:w-72 animate-float-slow md:h-96 md:w-96">
             {/* Outer guitar-pick glow */}
             <div className="absolute -inset-6 animate-pulse-glow rounded-full" />
             {/* Golden ring */}
@@ -170,7 +170,7 @@ function Index() {
             <div className="relative flex justify-center">
               <div className="absolute inset-0 -z-10 mx-auto my-auto h-80 w-80 rounded-full blur-3xl"
                 style={{ background: "radial-gradient(circle, oklch(0.78 0.18 240 / 0.3), transparent 70%)" }} />
-              <ElectricGuitar width={180} className="transition-transform duration-500 hover:scale-105 hover:-rotate-3" />
+              <ElectricGuitar className="w-[120px] md:w-[180px] transition-transform duration-500 hover:scale-105 hover:-rotate-3" />
             </div>
             <MusicPlayer />
           </div>
@@ -219,7 +219,7 @@ function Index() {
             <p className="mt-3 text-muted-foreground">Moments worth replaying on loop</p>
           </div>
 
-          <div className="mt-16 grid grid-cols-2 gap-6 md:grid-cols-3">
+          <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-sm mx-auto sm:max-w-none">
             {memories.map((memory, i) => (
               <div key={i} className="group relative flex flex-col items-center">
                 <div

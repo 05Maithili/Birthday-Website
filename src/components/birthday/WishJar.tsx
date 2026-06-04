@@ -37,7 +37,7 @@ export function WishJar() {
     const newBubble: WishBubble = {
       id,
       text: WISHES[wishIndex],
-      left: `${15 + Math.random() * 70}%`, // Random horizontal spread
+      left: `${-110 + Math.random() * 220}px`, // Random horizontal drift pixel offset
       rotation: `${-6 + Math.random() * 12}deg`, // Random rotation angle
     };
 
@@ -55,9 +55,17 @@ export function WishJar() {
       <style>{`
         @keyframes floatUpWish {
           0% { transform: translateY(80px) scale(0.5); opacity: 0; }
-          15% { opacity: 1; transform: translateY(0) scale(1) rotate(var(--rot)); }
+          15% { opacity: 1; transform: translateY(0) scale(1) translateX(calc(-50% + var(--drift) * 0.45)) rotate(var(--rot)); }
           85% { opacity: 1; }
-          100% { transform: translateY(-280px) scale(0.8) rotate(var(--rot)); opacity: 0; }
+          100% { transform: translateY(-280px) scale(0.8) translateX(calc(-50% + var(--drift) * 0.45)) rotate(var(--rot)); opacity: 0; }
+        }
+        @media (min-width: 640px) {
+          @keyframes floatUpWish {
+            0% { transform: translateY(80px) scale(0.5); opacity: 0; }
+            15% { opacity: 1; transform: translateY(0) scale(1) translateX(calc(-50% + var(--drift))) rotate(var(--rot)); }
+            85% { opacity: 1; }
+            100% { transform: translateY(-280px) scale(0.8) translateX(calc(-50% + var(--drift))) rotate(var(--rot)); opacity: 0; }
+          }
         }
         .animate-wish-bubble {
           animation: floatUpWish 4.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
@@ -89,10 +97,11 @@ export function WishJar() {
             {bubbles.map((bubble) => (
               <div
                 key={bubble.id}
-                className="absolute animate-wish-bubble glass rounded-2xl p-4 border border-[color:var(--gold)]/20 shadow-[0_4px_15px_rgba(0,0,0,0.6)] text-center text-amber-100/90 text-sm md:text-base font-script w-60 sm:w-64 backdrop-blur-xl"
+                className="absolute animate-wish-bubble glass rounded-2xl p-4 border border-[color:var(--gold)]/20 shadow-[0_4px_15px_rgba(0,0,0,0.6)] text-center text-amber-100/90 text-sm md:text-base font-script w-52 sm:w-64 backdrop-blur-xl"
                 style={{
-                  left: `calc(${bubble.left} - 120px)`, // Offset by half bubble width
+                  left: "50%",
                   "--rot": bubble.rotation,
+                  "--drift": bubble.left,
                   transformOrigin: "center bottom",
                 } as React.CSSProperties}
               >

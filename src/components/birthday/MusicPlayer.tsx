@@ -130,11 +130,11 @@ export function MusicPlayer() {
         </button>
       </div>
 
-      <div ref={containerRef} className="mt-6 flex h-20 items-end justify-center gap-1.5">
+      <div ref={containerRef} className="mt-6 flex h-20 items-end justify-center gap-1 sm:gap-1.5">
         {Array.from({ length: 32 }).map((_, i) => (
           <span
             key={i}
-            className="w-1.5 origin-bottom rounded-full"
+            className="w-1 sm:w-1.5 origin-bottom rounded-full"
             style={{
               height: `${22 + (i % 6) * 12}%`,
               background:
