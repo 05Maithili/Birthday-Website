@@ -140,6 +140,13 @@ function Navbar() {
               Home
             </Link>
             <Link
+              to="/together"
+              className="text-[10px] md:text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground transition-all hover:text-[color:var(--gold)]"
+              activeProps={{ className: "text-[color:var(--gold)] font-bold border-b border-[color:var(--gold)]/50 pb-0.5" }}
+            >
+              Together
+            </Link>
+            <Link
               to="/nostalgia-letter"
               className="text-[10px] md:text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground transition-all hover:text-[color:var(--gold)]"
               activeProps={{ className: "text-[color:var(--gold)] font-bold border-b border-[color:var(--gold)]/50 pb-0.5" }}

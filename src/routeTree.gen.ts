@@ -9,9 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TogetherRouteImport } from './routes/together'
 import { Route as NostalgiaLetterRouteImport } from './routes/nostalgia-letter'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TogetherRoute = TogetherRouteImport.update({
+  id: '/together',
+  path: '/together',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const NostalgiaLetterRoute = NostalgiaLetterRouteImport.update({
   id: '/nostalgia-letter',
   path: '/nostalgia-letter',
@@ -26,31 +32,42 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/nostalgia-letter': typeof NostalgiaLetterRoute
+  '/together': typeof TogetherRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/nostalgia-letter': typeof NostalgiaLetterRoute
+  '/together': typeof TogetherRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/nostalgia-letter': typeof NostalgiaLetterRoute
+  '/together': typeof TogetherRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/nostalgia-letter'
+  fullPaths: '/' | '/nostalgia-letter' | '/together'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/nostalgia-letter'
-  id: '__root__' | '/' | '/nostalgia-letter'
+  to: '/' | '/nostalgia-letter' | '/together'
+  id: '__root__' | '/' | '/nostalgia-letter' | '/together'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   NostalgiaLetterRoute: typeof NostalgiaLetterRoute
+  TogetherRoute: typeof TogetherRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/together': {
+      id: '/together'
+      path: '/together'
+      fullPath: '/together'
+      preLoaderRoute: typeof TogetherRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/nostalgia-letter': {
       id: '/nostalgia-letter'
       path: '/nostalgia-letter'
@@ -71,6 +88,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   NostalgiaLetterRoute: NostalgiaLetterRoute,
+  TogetherRoute: TogetherRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
